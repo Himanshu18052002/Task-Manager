@@ -1,0 +1,38 @@
+<!-- <mat-dialog-content
+  style="
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  "
+>
+  <h5>Add category below</h5>
+  <mat-form-field style="width: 100%; margin-top: 8px" appearance="outline">
+    <mat-label>Add new Category here</mat-label>
+    <input matInput [(ngModel)]="data.category" />
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="cancel()">No Thanks</button>
+  <button mat-button (click)="add()" cdkFocusInitial>Add</button>
+</mat-dialog-actions> -->
+
+<h1 mat-dialog-title>{{ data.category ? "Edit Category" : "Add Category" }}</h1>
+<mat-dialog-content
+  style="
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  "
+>
+  <h5>Add category below</h5>
+  <mat-form-field style="width: 100%; margin-top: 8px" appearance="fill">
+    <mat-label>Category</mat-label>
+    <input matInput [(ngModel)]="category" placeholder="Enter category" />
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-button (click)="save()">Save</button>
+</mat-dialog-actions>

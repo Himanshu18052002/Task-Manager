@@ -1,0 +1,60 @@
+<div class="cardContaier">
+  <mat-card class="card" appearance="outlined">
+    <!-- <button
+      class="deleteButton"
+      (click)="deleteThis()"
+      mat-fab
+      aria-label="Delete Tasks"
+    >
+      <mat-icon>delete</mat-icon>
+    </button> -->
+
+    <button
+      class="deleteButton"
+      (click)="deleteThis()"
+      aria-label="Delete Tasks"
+    >
+      <span class="button_top"> <mat-icon>delete</mat-icon> </span>
+    </button>
+
+    <button
+      class="updateButton"
+      (click)="updateThis()"
+      aria-label="Update the task"
+    >
+      <span class="button_top"> <mat-icon>edit</mat-icon> </span>
+    </button>
+
+    <mat-card-header>
+      <mat-card-title class="cardTitle">{{ listItem.title }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content style="margin: 10px 0" class="description">
+      <p>{{ listItem.description }}</p>
+    </mat-card-content>
+    <mat-card-footer class="example-card-footer">
+      <mat-chip-set aria-label="Tasks sets">
+        <mat-chip
+          [ngStyle]="{
+            'background-color': listItem.status
+              ? 'chartreuse'
+              : 'rgb(255, 207, 85)'
+          }"
+          >{{ listItem.status ? "Completed" : "Pending" }}</mat-chip
+        >
+        <mat-chip
+          [ngStyle]="{
+            'background-color':
+              listItem.priority === 'High'
+                ? '#ff584f'
+                : listItem.priority === 'Medium'
+                ? '#EFF20F'
+                : '#0FF240'
+          }"
+          >{{ listItem.priority }}</mat-chip
+        >
+        <mat-chip>{{ listItem.category }}</mat-chip>
+        <mat-chip>Created at {{ listItem.date | date }}</mat-chip>
+      </mat-chip-set>
+    </mat-card-footer>
+  </mat-card>
+</div>

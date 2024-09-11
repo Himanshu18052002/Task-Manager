@@ -1,0 +1,58 @@
+<div class="container">
+  <form [formGroup]="form">
+    <h2>Login</h2>
+    <div class="inputBoxContainer">
+      <mat-form-field appearance="outline"
+        ><mat-label>Email</mat-label>
+        <input
+          matInput
+          formControlName="email"
+          type="text"
+          placeholder="Add email here"
+        />
+        <mat-error
+          *ngIf="
+          form.get('email')?.touched && form.get('email')?.errors?.['required']
+        "
+        >
+          Email value is invalid please write valid email
+        </mat-error>
+        <mat-error *ngIf="form.get('email')?.errors?.['email']">
+          Please enter a valid email
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="inputBoxContainer">
+      <mat-form-field appearance="outline"
+        ><mat-label>password</mat-label>
+        <input
+          matInput
+          formControlName="password"
+          type="password"
+          placeholder="Add password here"
+        />
+        <mat-error
+          *ngIf="
+          form.get('password')?.touched &&
+          form.get('password')?.errors?.['required']
+        "
+        >
+          Please enter a valid password
+        </mat-error>
+        <mat-error
+          *ngIf="
+            form.get('password')?.touched &&
+            form.get('password')?.hasError('minlength')
+          "
+        >
+          Password must be more then 8 characters
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <button (click)="onSubmit()" mat-raised-button>Log me in</button>
+    <p style="color: rgb(84, 158, 223); cursor: pointer" (click)="navigateMe()">
+      Don't have a account
+    </p>
+  </form>
+</div>

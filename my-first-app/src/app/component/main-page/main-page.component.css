@@ -1,0 +1,61 @@
+h1 {
+  text-align: center;
+}
+
+.listContainer {
+  padding: 5px 20px;
+  height: 72vh;
+  overflow-y: scroll;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Create 3 equal-width columns */
+  gap: 15px; /* Add gap between grid items */
+}
+
+.list-element-container {
+  /* Optional: Add padding or border if needed */
+  padding: 10px; /* Adjust padding to your needs */
+}
+
+.dateElement {
+  font-size: small;
+  margin-left: 15px;
+  color: #737373;
+}
+
+.list-card {
+  padding: 10px;
+  position: relative;
+  cursor: pointer;
+  box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.list-card-footer {
+  margin: 10px 0; /* Adjusted margin for spacing */
+}
+
+.chip {
+  margin: 5px;
+}
+
+.checkBox {
+  position: absolute;
+  right: 10px;
+  top: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+.noItemHeading {
+  position: absolute;
+  top: 10%;
+  display: flex;
+  align-items: center;
+  z-index: -1;
+}
+
+@media (max-width: 400px) {
+  .noItemHeading {
+    top: 50%;
+  }
+}

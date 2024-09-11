@@ -1,0 +1,41 @@
+<div
+  style="display: flex; justify-content: center; align-items: center; gap: 20px"
+>
+  <div>
+    <h1>Admin Pannel</h1>
+  </div>
+  <button class="adder" (click)="addThis()" mat-fab>
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+<h2>Users :</h2>
+<ng-container *ngIf="users.length">
+  <div class="container">
+    <div class="cardContainer" *ngFor="let user of users">
+      <mat-card>
+        <mat-card-header class="header">
+          <h3>{{ user.name }}</h3>
+          <div class="buttonContainer">
+            <div>
+              <button (click)="updateThis(user)" class="editButton" mat-fab>
+                <mat-icon>edit</mat-icon>
+              </button>
+            </div>
+            <div>
+              <button
+                (click)="deleteThis(user._id)"
+                class="deleteButton"
+                mat-fab
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
+        </mat-card-header>
+        <mat-card-content
+          ><p>{{ user.email }}</p></mat-card-content
+        >
+      </mat-card>
+    </div>
+  </div>
+</ng-container>

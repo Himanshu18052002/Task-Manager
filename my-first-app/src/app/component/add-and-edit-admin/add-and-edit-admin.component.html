@@ -1,0 +1,52 @@
+<h1 mat-dialog-title>Update User</h1>
+<mat-dialog-content
+  style="
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  "
+>
+  <h5>Add User data below</h5>
+
+  <mat-form-field style="width: 100%; margin-top: 8px" appearance="fill">
+    <mat-label>name</mat-label>
+    <input matInput [(ngModel)]="name" placeholder="Enter category" required />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>email</mat-label>
+    <input
+      matInput
+      [(ngModel)]="email"
+      placeholder="Enter category"
+      email
+      required
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input
+      matInput
+      type="password"
+      [(ngModel)]="password"
+      placeholder="Enter password"
+      required
+      minlength="8"
+    />
+  </mat-form-field>
+  <div *ngIf="password.length < 8 && password.length > 0" style="color: red">
+    Password should be at least 8 characters long
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button
+    mat-button
+    (click)="save()"
+    [disabled]="!name || !email || password.length < 8"
+  >
+    Save
+  </button>
+</mat-dialog-actions>

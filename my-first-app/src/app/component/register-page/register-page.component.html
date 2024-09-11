@@ -1,0 +1,75 @@
+<div class="container">
+  <form [formGroup]="form">
+    <h2>Register</h2>
+    <div class="inputBoxContainer">
+      <mat-form-field appearance="outline">
+        <mat-label>Full Name</mat-label>
+        <input
+          matInput
+          formControlName="name"
+          type="text"
+          placeholder="Add full name here"
+        />
+        <mat-error
+          *ngIf="form.get('name')?.touched && form.get('name')?.errors?.['required']"
+        >
+          Name value should be more then 2 characters
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="inputBoxContainer">
+      <mat-form-field appearance="outline"
+        ><mat-label>Email</mat-label>
+        <input
+          matInput
+          formControlName="email"
+          type="text"
+          placeholder="Add email here"
+        />
+        <mat-error
+          *ngIf="
+          form.get('email')?.touched && form.get('email')?.errors?.['required']
+        "
+        >
+          Email value is invalid please write valid email
+        </mat-error></mat-form-field
+      >
+    </div>
+    <div class="inputBoxContainer">
+      <mat-form-field appearance="outline"
+        ><mat-label>password</mat-label>
+        <input
+          matInput
+          formControlName="password"
+          type="password"
+          placeholder="Add password here"
+        />
+        <mat-error
+          *ngIf="
+          form.get('password')?.touched &&
+          form.get('password')?.errors?.['required']
+        "
+        >
+          Password is required
+        </mat-error>
+        <mat-error
+          *ngIf="
+          form.get('password')?.touched &&
+          form.get('password')?.errors?.['minlength']
+        "
+        >
+          Password Length should be 8 characters
+        </mat-error></mat-form-field
+      >
+    </div>
+
+    <button (click)="onSubmit()" mat-raised-button>Register me</button>
+    <p
+      style="color: rgb(84, 158, 223); cursor: pointer"
+      routerLink="/"
+      routerLinkActive="router-link-active"
+    >
+      Already registered?
+    </p>
+  </form>
+</div>

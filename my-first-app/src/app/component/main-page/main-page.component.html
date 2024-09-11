@@ -1,0 +1,43 @@
+<ng-container *ngIf="(filteredList$ | async)?.length">
+  <mat-form-field style="margin: 10px" appearance="outline">
+    <mat-label>Sort By :</mat-label>
+    <mat-select [(ngModel)]="selectSortBy" (selectionChange)="sortList()">
+      <mat-option value="Priority">Priority</mat-option>
+      <mat-option value="Status">Status</mat-option>
+      <mat-option value="Date">Date</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field style="margin: 10px" appearance="outline">
+    <mat-label>Order :</mat-label>
+    <mat-select [(ngModel)]="selectSortOrder" (selectionChange)="sortList()">
+      <mat-option value="Ascending">Ascending</mat-option>
+      <mat-option value="Descending">Descending</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field style="margin: 10px" appearance="outline">
+    <mat-label>Category :</mat-label>
+    <mat-select [(ngModel)]="selectCategory" (selectionChange)="sortCategory()">
+      <mat-option *ngFor="let cat of category$ | async" [value]="cat.category">
+        {{ cat.category }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="listContainer">
+    <app-list-element
+      *ngFor="let item of filteredList$ | async"
+      [listItem]="item"
+      (checkChange)="onCheckChange($event)"
+      class="list-element-container"
+    ></app-list-element>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="(filteredList$ | async)?.length === 0">
+  <div class="noItemHeading">
+    <img src="assets/nothing_to_display.png" width="60%" />
+    <h3>No items to display</h3>
+  </div>
+</ng-container>

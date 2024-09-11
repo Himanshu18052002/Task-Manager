@@ -1,0 +1,7 @@
+h1 {
+  text-align: center;
+}
+.router-outlet {
+  position: relative;
+  overflow: hidden;
+}

@@ -1,0 +1,47 @@
+<mat-toolbar class="navbar">
+  <span (click)="routeToLists()">Tasks</span>
+  <span class="example-spacer"></span>
+
+  <div class="element-nav">
+    <ng-container *ngIf="admin">
+      <button
+        (click)="routetoAdmin()"
+        mat-button
+        class="example-icon favorite-icon"
+      >
+        Admin
+      </button>
+    </ng-container>
+    <button
+      (click)="routerToadd()"
+      mat-button
+      class="example-icon favorite-icon"
+    >
+      Add a task
+    </button>
+
+    <ng-container *ngIf="show"
+      ><p style="font-size: 10px; position: relative; top: 6px">
+        {{ email?.id }}
+      </p></ng-container
+    >
+
+    <!-- <button
+      
+      mat-mini-fab
+    >
+      <mat-icon>logout</mat-icon>
+    </button> -->
+
+    <div class="logoutButton">
+      <button
+        (mouseenter)="setShow()"
+        (mouseleave)="setShow()"
+        aria-label="logout"
+        (click)="logoutMe()"
+      >
+        <span class="button_top"> <mat-icon>logout</mat-icon> </span>
+      </button>
+    </div>
+  </div>
+</mat-toolbar>

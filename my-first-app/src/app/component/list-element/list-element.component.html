@@ -1,0 +1,78 @@
+<mat-card *ngIf="listItem" class="list-card" appearance="outlined">
+  <mat-card-header (click)="tasksDetails()">
+    <mat-card-title>{{ listItem.title }}</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content class="truncateTexts" (click)="tasksDetails()">
+    <p>{{ listItem.description }}</p>
+  </mat-card-content>
+
+  <mat-card-footer class="list-card-footer">
+    <mat-chip
+      class="chip"
+      [ngStyle]="{
+        'background-color':
+          listItem.priority === 'High'
+            ? 'rgb(255 30 30 / 56%)
+'
+            : listItem.priority === 'Medium'
+            ? 'rgb(254 255 190)'
+            : '#0FF240'
+      }"
+      >{{ listItem.priority }}</mat-chip
+    >
+    <mat-chip
+      class="chip"
+      style="background-color: chartreuse"
+      *ngIf="listItem.status"
+      >Completed</mat-chip
+    >
+    <mat-chip
+      class="chip"
+      style="background-color: rgb(255, 207, 85)"
+      *ngIf="!listItem.status"
+      >Pending</mat-chip
+    >
+
+    @if(!listItem.status){
+    <mat-chip
+      class="chip deadline-chip"
+      [ngClass]="{ 'hover-active': isHovering }"
+      (mouseover)="isHovering = true"
+      (mouseout)="isHovering = false"
+    >
+      Deadline {{ getRemainingTime() }}
+      <span *ngIf="isHovering" class="date-tooltip">{{
+        listItem.deadLine | date
+      }}</span>
+    </mat-chip>
+    }
+  </mat-card-footer>
+  <div class="checkBox">
+    <!-- <mat-checkbox
+      (change)="onCheckboxChange($event)"
+      [checked]="listItem.status"
+    >
+    </mat-checkbox> -->
+
+    <!-- <label class="container">
+      <input
+        (change)="onCheckboxChange($event)"
+        [checked]="listItem.status"
+        type="checkbox"
+      />
+      <div class="checkmark"></div>
+    </label> -->
+
+    <div class="checkBox">
+      <label class="container">
+        <input
+          (change)="onCheckboxChange($event)"
+          type="checkbox"
+          [checked]="listItem.status"
+        />
+        <div class="checkmark"></div>
+      </label>
+    </div>
+  </div>
+</mat-card>

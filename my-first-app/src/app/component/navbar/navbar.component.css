@@ -1,0 +1,56 @@
+.navbar {
+  background-color: #d7eaff;
+  width: 100%;
+  transition: all 0.5s ease-in-out;
+}
+.element-nav {
+  display: flex;
+  gap: 20px;
+}
+.example-spacer {
+  flex: 1 1 auto;
+}
+span {
+  cursor: pointer;
+}
+
+.logoutButton button {
+  /* Variables */
+  --button_radius: 0.75em;
+  --button_color: #d7eaff;
+  --button_outline_color: #000000;
+  font-size: 5px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--button_radius);
+  background: var(--button_outline_color);
+}
+
+.button_top {
+  display: block;
+  box-sizing: border-box;
+  border: 2px solid var(--button_outline_color);
+  border-radius: var(--button_radius);
+  padding: 0.75em 1.5em;
+  background: var(--button_color);
+  color: var(--button_outline_color);
+  transform: translateY(-0.2em);
+  transition: transform 0.1s ease;
+}
+
+.logoutButton button:hover .button_top {
+  /* Pull the button upwards when hovered */
+  transform: translateY(-0.33em);
+}
+
+.logoutButton button:active .button_top {
+  /* Push the button downwards when pressed */
+  transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+  .element-nav {
+    padding-right: 0;
+  }
+}

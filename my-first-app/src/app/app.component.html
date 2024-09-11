@@ -1,0 +1,6 @@
+@if (showNavbar) {
+<app-navbar></app-navbar>
+}
+<div [@fadeAnimation]="getAnimationState(outlet)" class="router-outlet">
+  <router-outlet #outlet="outlet"></router-outlet>
+</div>

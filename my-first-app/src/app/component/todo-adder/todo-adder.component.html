@@ -1,0 +1,125 @@
+<h2 *ngIf="url.length !== 3" class="heading">Add Tasks</h2>
+<h2 *ngIf="url.length === 3" class="heading">Update Tasks</h2>
+
+<div class="formContainer">
+  <form [formGroup]="todoForm" class="form">
+    <div class="field-group">
+      <mat-form-field appearance="outline">
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title" placeholder="Add Title" />
+        <mat-error
+          *ngIf="todoForm.get('title')?.touched && todoForm.get('title')?.errors?.['required']"
+        >
+          Title is required
+        </mat-error>
+        <mat-error
+          *ngIf="todoForm.get('title')?.touched && todoForm.get('title')?.errors?.['minlength']"
+        >
+          Title should be at least 3 characters
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="deadLine" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="field-group">
+      <mat-form-field appearance="outline">
+        <mat-label>Task Priority</mat-label>
+        <mat-select formControlName="priority">
+          <mat-option *ngFor="let pr of priority" [value]="pr">{{
+            pr
+          }}</mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="todoForm.get('priority')?.touched && todoForm.get('priority')?.errors?.['required']"
+        >
+          Priority is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Task Category</mat-label>
+        <mat-select formControlName="category">
+          <div
+            style="display: flex; align-items: center"
+            class="category-addition"
+          >
+            <mat-form-field appearance="outline" class="category-input">
+              <mat-label>New Category</mat-label>
+              <input
+                matInput
+                type="text"
+                #newCategory
+                placeholder="Add new category"
+              />
+            </mat-form-field>
+            <button
+              style="position: relative; bottom: 6px"
+              (click)="submitCategory(newCategory.value)"
+              mat-mini-fab
+              color="primary"
+            >
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+          <mat-option></mat-option>
+          <ng-container *ngIf="category.length">
+            <mat-option *ngFor="let cat of category" [value]="cat?.category">
+              {{ cat?.category }}
+            </mat-option>
+          </ng-container>
+        </mat-select>
+        <mat-error
+          *ngIf="todoForm.get('category')?.touched && todoForm.get('category')?.errors?.['required']"
+        >
+          Category is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <textarea
+        matInput
+        formControlName="description"
+        placeholder="Add description"
+      ></textarea>
+      <mat-error
+        *ngIf="todoForm.get('description')?.touched && todoForm.get('description')?.errors?.['required']"
+      >
+        Description is required
+      </mat-error>
+      <mat-error
+        *ngIf="todoForm.get('description')?.touched && todoForm.get('description')?.errors?.['minlength']"
+      >
+        Description should be at least 3 characters
+      </mat-error>
+    </mat-form-field>
+
+    <div class="button-container">
+      <button
+        *ngIf="url.length === 3"
+        mat-raised-button
+        color="primary"
+        [disabled]="todoForm.invalid"
+        (click)="onUpdate()"
+      >
+        Update
+      </button>
+      <button
+        *ngIf="url.length !== 3"
+        mat-raised-button
+        color="primary"
+        [disabled]="todoForm.invalid"
+        (click)="onSubmit()"
+      >
+        Add Task
+      </button>
+    </div>
+  </form>
+</div>
